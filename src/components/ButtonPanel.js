@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-function ButtonPanel(props) {
+function ButtonPanel() {
   return (
     <>
       <div id="group-1">
@@ -34,7 +34,7 @@ function ButtonPanel(props) {
         <Button name="=" />
       </div>
     </>
-  )
+  );
 }
 
 export default ButtonPanel;

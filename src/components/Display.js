@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Display(props) {
+function Display({ calculation }) {
   return (
-    <div>{props.calculation}</div>
+    <div>{calculation}</div>
   );
 }
 
 Display.propTypes = {
-  calculation: PropTypes.string.isRequired,
+  calculation: PropTypes.string,
 };
 
 Display.defaultProps = {
