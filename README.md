@@ -32,7 +32,7 @@ This project is authored by [santiago-rodrig]()
 
 You can reach me out in the following URLs.
 
-- [My website](https://portfolio.santiagorodriguez.dev)
+- [My website](https://santiagorodriguez.dev)
 - [Github](https://github.com/santiago-rodrig)
 - [LinkedIn](https://www.linkedin.com/in/santiago-andres-rodriguez-marquez/)
 - [AngelList](https://angel.co/u/santiago-andres-rodriguez-marquez)
