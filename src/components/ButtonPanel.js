@@ -36,3 +36,5 @@ function ButtonPanel(props) {
     </>
   )
 }
+
+export default ButtonPanel;
