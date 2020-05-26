@@ -27,3 +27,12 @@ test('calculates the sum of two big numbers', () => {
   const expected = buildExpected(numberOne, numberTwo, '+');
   expect(given).toEqual(expected);
 });
+
+test('calculates the sum of two floating point numbers', () => {
+  const numberOne = '1.0909887918723';
+  const numberTwo = '2231872.63712';
+  const calculator = buildCalculator(numberOne, numberTwo);
+  const given = calculate(calculator, '+');
+  const expected = buildExpected(numberOne, numberTwo, '+');
+  expect(given).toEqual(expected);
+});
