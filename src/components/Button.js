@@ -21,10 +21,12 @@ function Button({ name, color, wide }) {
 
 Button.propTypes = {
   name: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  wide: PropTypes.string.isRequired,
 };
 
 Button.defaultProps = {
-  color: '#FCA800'
+  color: '#FCA800',
 };
 
 export default Button;
