@@ -23,9 +23,19 @@ const buttonsProps = [
   { key: 19, name: '=' },
 ];
 
-const buttonsElements = buttonsProps.map(prop => (
-  <Button key={prop.key} name={prop.name} />
-));
+const buttonsColor = "#E3E1DE";
+
+const buttonsElements = buttonsProps.map((prop, i) => {
+  const props = { ...prop, wide: false, color: buttonsColor };
+
+  if ((i + 1) % 4 === 0 || prop.key === 19) {
+    delete props.color
+  } else if (prop.name === '0') {
+    props.wide = true;
+  }
+
+  return <Button { ...props } />;
+});
 
 const buttonGroupsProps = [
   { key: 1 },
