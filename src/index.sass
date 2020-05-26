@@ -1,5 +1,7 @@
 $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
 $display-bg: #807F7D
+$operation-bg: #FCA800
+$button-border: 1px solid #B8B6B4
 
 html
   box-sizing: border-box
@@ -34,6 +36,15 @@ body
 .calculator-button
   padding: 20px
   flex-basis: 25%
+  font-size: 18px
+  border-radius: 0
+  border: none
+  border-right: $button-border
+  border-bottom: $button-border
+  &:first-child
+    border-left: $button-border
+  &:last-child
+    background-color: $operation-bg
 
 .buttons-group:last-child
   .calculator-button:first-child
