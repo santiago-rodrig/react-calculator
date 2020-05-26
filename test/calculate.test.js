@@ -1,4 +1,3 @@
-import Big from 'big.js/big';
 import calculate from '../src/logic/calculate';
 import operate from '../src/logic/operate';
 
