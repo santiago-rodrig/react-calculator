@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Display({ calculation }) {
   return (
-    <div>{calculation}</div>
+    <div id="display">{calculation}</div>
   );
 }
 
