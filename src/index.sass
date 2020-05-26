@@ -1,6 +1,12 @@
 $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
 $display-bg: #807F7D
 
+html
+  box-sizing: border-box
+
+*::before, *, *::after
+  box-sizing: inherit
+
 body
   margin: 0
   font-family: $font-stack
@@ -21,3 +27,14 @@ body
   color: white
   font-weight: bold
   font-size: 24px
+
+.buttons-group
+  display: flex
+
+.calculator-button
+  padding: 20px
+  flex-basis: 25%
+
+.buttons-group:last-child
+  .calculator-button:first-child
+    flex-basis: 50%
