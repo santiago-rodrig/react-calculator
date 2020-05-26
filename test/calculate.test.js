@@ -11,8 +11,19 @@ function buildExpected(total, next, operation) {
 }
 
 test('calculates the sum of two common numbers', () => {
-  const calculator = buildCalculator('1', '2');
+  const numberOne = '1';
+  const numberTwo = '2';
+  const calculator = buildCalculator(numberOne, numberTwo);
   const given = calculate(calculator, '+');
-  const expected = buildExpected('1', '2', '+');
+  const expected = buildExpected(numberOne, numberTwo, '+');
+  expect(given).toEqual(expected);
+});
+
+test('calculates the sum of two big numbers', () => {
+  const numberOne = '10909887918723';
+  const numberTwo = '223187263712';
+  const calculator = buildCalculator(numberOne, numberTwo);
+  const given = calculate(calculator, '+');
+  const expected = buildExpected(numberOne, numberTwo, '+');
   expect(given).toEqual(expected);
 });
