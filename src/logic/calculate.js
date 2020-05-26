@@ -1,14 +1,14 @@
 import operate from './operate';
 
 function calculate(calculatorObj, buttonName) {
-  calculatorObj.operation = buttonName;
-  calculatorObj.total = operate(
-    calculatorObj.total,
-    calculatorObj.next,
-    calculatorObj.operation,
+  const result = { operation: null, next: null };
+  const { total, next } = calculatorObj;
+  result.total = operate(
+    total,
+    next,
+    buttonName,
   );
-  calculatorObj.next = undefined;
-  calculatorObj.operation = undefined;
+  return result;
 }
 
 export default calculate;

@@ -1,12 +1,18 @@
 import Big from 'big.js/big';
 
 function operate(numberOne, numberTwo, operation) {
-  numberOne = Big(numberOne);
-  numberTwo = Big(numberTwo);
+  const bigOne = Big(numberOne); const
+    bigTwo = Big(numberTwo);
+  let result;
   switch (operation) {
     case '+':
-      return numberOne.plus(numberTwo).toString();
+      result = bigOne.plus(bigTwo).toString();
+      break;
+    default:
+      result = 'NaN';
+      break;
   }
+  return result;
 }
 
 export default operate;
