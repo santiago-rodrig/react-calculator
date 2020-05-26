@@ -1,13 +1,14 @@
-import Big from 'big.js/big';
+import operate from './operate';
 
-function calculate(numberOne, numberTwo, operation) {
-  numberOne = Big(numberOne);
-  numberTwo = Big(numberTwo);
-
-  switch (operation) {
-    case '+':
-    return numberOne.plus(numberTwo).toString()
-  }
+function calculate(calculatorObj, buttonName) {
+  calculatorObj.operation = buttonName;
+  calculatorObj.total = operate(
+    calculatorObj.total,
+    calculatorObj.next,
+    calculatorObj.operation,
+  );
+  calculatorObj.next = undefined;
+  calculatorObj.operation = undefined;
 }
 
 export default calculate;
