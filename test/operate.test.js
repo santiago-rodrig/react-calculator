@@ -20,6 +20,7 @@ function buildExpected(numberOne, numberTwo, operation) {
       break;
     case '÷':
       result = bigOne.div(bigTwo);
+      break;
     default:
       result = 'NaN';
       break;
@@ -67,3 +68,4 @@ test('it returns NaN on unknown operations', () => {
   const expected = buildExpected(numberOne, numberTwo, 'whoops');
   expect(given).toEqual(expected);
 });
+

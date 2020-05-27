@@ -10,9 +10,9 @@ describe('addition, subtraction, multiplication, or division', () => {
     test('calculates and builds new calculator with pending operation', () => {
       const numberOne = '1';
       const numberTwo = '2';
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 1 + 2 + -> 3 + ?
       calculator = buildCalculator(numberOne, numberTwo, '+');
@@ -44,9 +44,9 @@ describe('addition, subtraction, multiplication, or division', () => {
 describe('percents (%)', () => {
   describe('no next number provided', () => {
     test('it divides the total by 100', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 5 % ? -> 0.05 ? ?
       calculator = buildCalculator('5', undefined, undefined);
@@ -57,9 +57,9 @@ describe('percents (%)', () => {
 
   describe('pending operation', () => {
     test('it performs the pending operation and divides by 100', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 5 + 19 % -> 0.24 ? ?
       calculator = buildCalculator('5', '19', '+');
@@ -73,9 +73,9 @@ describe('percents (%)', () => {
 describe('swap sign (+/-)', () => {
   describe('only total is available', () => {
     test('it swaps the sign of total', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 23 ? +/- -> -23 ? ?
       calculator = buildCalculator('23', undefined, undefined);
@@ -87,9 +87,9 @@ describe('swap sign (+/-)', () => {
 
   describe('there is a pending operation', () => {
     test('it swaps the sign of the second operand', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 5 X 99 +/- -> 5 X (-99)
       calculator = buildCalculator('5', '99', 'X');
@@ -103,9 +103,9 @@ describe('swap sign (+/-)', () => {
 describe('equal sign (=)', () => {
   describe('there is a pending operation', () => {
     test('it updates the total and resets the other properties', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 87 + (-34) = -> 53 ? ?
       calculator = buildCalculator('87', '-34', '+');
@@ -117,9 +117,9 @@ describe('equal sign (=)', () => {
 
   describe('only total is available', () => {
     test('it sets the total to itself', () => {
-      const calculator;
-      const given;
-      const expected;
+      let calculator;
+      let given;
+      let expected;
 
       // 66 ? ? = -> 66 ? ?
       calculator = buildCalculator('66', undefined, undefined);
