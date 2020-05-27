@@ -1,0 +1,49 @@
+$font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+$display-bg: #807F7D
+$button-border: 1px solid #B8B6B4
+
+html
+  box-sizing: border-box
+
+*::before, *, *::after
+  box-sizing: inherit
+
+body
+  margin: 0
+  font-family: $font-stack
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  padding-top: 80px
+  padding-bottom: 80px
+
+#calculator
+  display: flex
+  flex-direction: column
+  width: 700px
+  margin: 0 auto
+
+#display
+  background-color: $display-bg
+  text-align: right
+  padding: 30px
+  flex-basis: 100px // same as height 100px
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  color: white
+  font-weight: bold
+  font-size: 24px
+
+.buttons-group
+  display: flex
+  flex-basis: 100px
+
+.calculator-button
+  padding: 20px
+  font-size: 18px
+  border-radius: 0
+  border: none
+  border-right: $button-border
+  border-bottom: $button-border
+  &:first-child
+    border-left: $button-border

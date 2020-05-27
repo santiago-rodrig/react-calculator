@@ -1,12 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ name }) {
-  return <button type="button">{name}</button>;
+function buildStyle(color, wide) {
+  const style = { backgroundColor: color };
+  style.flexBasis = wide ? '50%' : '25%';
+  return style;
+}
+
+function Button({ name, color, wide }) {
+  return (
+    <button
+      className="calculator-button"
+      type="button"
+      style={buildStyle(color, wide)}
+    >
+      {name}
+    </button>
+  );
 }
 
 Button.propTypes = {
   name: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  wide: PropTypes.string.isRequired,
+};
+
+Button.defaultProps = {
+  color: '#FCA800',
 };
 
 export default Button;
