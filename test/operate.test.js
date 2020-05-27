@@ -68,4 +68,3 @@ test('it returns NaN on unknown operations', () => {
   const expected = buildExpected(numberOne, numberTwo, 'whoops');
   expect(given).toEqual(expected);
 });
-

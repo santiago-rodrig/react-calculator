@@ -1,5 +1,4 @@
 import calculate from '../src/logic/calculate';
-import operate from '../src/logic/operate';
 
 function buildCalculator(total, next = undefined, operation = undefined) {
   return { total, next, operation };
@@ -44,27 +43,20 @@ describe('addition, subtraction, multiplication, or division', () => {
 describe('percents (%)', () => {
   describe('no next number provided', () => {
     test('it divides the total by 100', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 5 % ? -> 0.05 ? ?
-      calculator = buildCalculator('5', undefined, undefined);
-      given = calculate(calculator, '%');
-      expected = buildCalculator('0.05', undefined, undefined);
+      const calculator = buildCalculator('5', undefined, undefined);
+      const given = calculate(calculator, '%');
+      const expected = buildCalculator('0.05', undefined, undefined);
+      expect(given).toEqual(expected);
     });
   });
 
   describe('pending operation', () => {
     test('it performs the pending operation and divides by 100', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 5 + 19 % -> 0.24 ? ?
-      calculator = buildCalculator('5', '19', '+');
-      given = calculate(calculator, '%');
-      expected = buildCalculator('0.24', undefined, undefined);
+      const calculator = buildCalculator('5', '19', '+');
+      const given = calculate(calculator, '%');
+      const expected = buildCalculator('0.24', undefined, undefined);
       expect(given).toEqual(expected);
     });
   });
@@ -73,28 +65,20 @@ describe('percents (%)', () => {
 describe('swap sign (+/-)', () => {
   describe('only total is available', () => {
     test('it swaps the sign of total', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 23 ? +/- -> -23 ? ?
-      calculator = buildCalculator('23', undefined, undefined);
-      given = calculate(calculator, '+/-');
-      expected = buildCalculator('-23', undefined, undefined);
+      const calculator = buildCalculator('23', undefined, undefined);
+      const given = calculate(calculator, '+/-');
+      const expected = buildCalculator('-23', undefined, undefined);
       expect(given).toEqual(expected);
     });
   });
 
   describe('there is a pending operation', () => {
     test('it swaps the sign of the second operand', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 5 X 99 +/- -> 5 X (-99)
-      calculator = buildCalculator('5', '99', 'X');
-      given = calculate(calculator, '+/-');
-      expected = buildCalculator('5', '-99', 'X');
+      const calculator = buildCalculator('5', '99', 'X');
+      const given = calculate(calculator, '+/-');
+      const expected = buildCalculator('5', '-99', 'X');
       expect(given).toEqual(expected);
     });
   });
@@ -103,29 +87,20 @@ describe('swap sign (+/-)', () => {
 describe('equal sign (=)', () => {
   describe('there is a pending operation', () => {
     test('it updates the total and resets the other properties', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 87 + (-34) = -> 53 ? ?
-      calculator = buildCalculator('87', '-34', '+');
-      given = calculate(calculator, '=');
-      expected = buildCalculator('53', undefined, undefined);
+      const calculator = buildCalculator('87', '-34', '+');
+      const given = calculate(calculator, '=');
+      const expected = buildCalculator('53', undefined, undefined);
       expect(given).toEqual(expected);
     });
   });
 
   describe('only total is available', () => {
     test('it sets the total to itself', () => {
-      let calculator;
-      let given;
-      let expected;
-
       // 66 ? ? = -> 66 ? ?
-      calculator = buildCalculator('66', undefined, undefined);
-      given = calculate(calculator, '=');
+      const calculator = buildCalculator('66', undefined, undefined);
+      const given = calculate(calculator, '=');
       expect(given).toEqual(calculator);
     });
   });
 });
-
