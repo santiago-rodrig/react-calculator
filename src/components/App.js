@@ -26,7 +26,7 @@ function App() {
   return (
     <div id="calculator">
       {displayComponent}
-      <ButtonPanel handleClick={handleClick} />
+      <ButtonPanel clickHandler={() => handleClick} />
     </div>
   );
 }
