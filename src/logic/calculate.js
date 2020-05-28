@@ -6,13 +6,15 @@ function calculate(calculatorObj, buttonName) {
   switch (buttonName) {
     case '%':
       if (next) {
-        total = operate(total, next, operation);
-        total = operate(total, '100', '÷');
-        next = undefined;
-        operation = undefined;
-      } else {
+        next = operate(total, next, 'X');
+        next = operate(next, '100', '÷');
+      } else if (total && operation) {
+        next = operate(total, total, 'X');
+        next = operate(total, '100', '÷');
+      } else if (total) {
         total = operate(total, '100', '÷');
       }
+
       break;
     case '+/-':
       if (next) {
