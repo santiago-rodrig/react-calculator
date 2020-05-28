@@ -32,6 +32,9 @@ function calculate(calculatorObj, buttonName) {
         total = operate(total, next, operation);
         next = undefined;
         operation = undefined;
+      } else if (total && operation) {
+        total = operate(total, total, operation);
+        operation = undefined;
       }
 
       break;
