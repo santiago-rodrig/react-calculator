@@ -10,7 +10,7 @@ function calculate(calculatorObj, buttonName) {
         next = operate(next, '100', '÷');
       } else if (total && operation) {
         next = operate(total, total, 'X');
-        next = operate(total, '100', '÷');
+        next = operate(next, '100', '÷');
       } else if (total) {
         total = operate(total, '100', '÷');
       }
