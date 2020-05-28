@@ -51,7 +51,7 @@ describe('addition, subtraction, multiplication, or division', () => {
 });
 
 describe('percents (%)', () => {
-  describe('no next number provided', () => {
+  describe('only total available', () => {
     test('it divides the total by 100', () => {
       // 5 % ? -> 0.05 ? ?
       const calculator = buildCalculator('5', undefined, undefined);
@@ -61,12 +61,22 @@ describe('percents (%)', () => {
     });
   });
 
+  describe('total and operation available', () => {
+    test('it multiplies total by itself and divides by 100, the result is assigned to next', () => {
+      // 5 - ? % -> 5 - 0.25
+      const calculator = buildCalculator('5', undefined, '-');
+      const given = calculate(calculator, '%');
+      const expected = buildCalculator('5', '0.25', '-');
+      expect(given).toEqual(expected);
+    });
+  });
+
   describe('pending operation', () => {
     test('it performs the pending operation and divides by 100', () => {
       // 5 + 19 % -> 0.24 ? ?
       const calculator = buildCalculator('5', '19', '+');
       const given = calculate(calculator, '%');
-      const expected = buildCalculator('0.24', undefined, undefined);
+      const expected = buildCalculator('5', '0.95', '+');
       expect(given).toEqual(expected);
     });
   });
