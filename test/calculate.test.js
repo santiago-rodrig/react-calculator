@@ -128,15 +128,15 @@ describe('digits', () => {
   });
 
   describe('only total is present', () => {
-    describe('total is zero', () => {
-      // 0 ? ? 7 -> 7 ? ?
-      const calculator = buildCalculator('0', undefined, undefined);
+    describe('total is undefined', () => {
+      // ? ? ? 7 -> 7 ? ?
+      const calculator = buildCalculator(undefined, undefined, undefined);
       const given = calculate(calculator, '7');
       const expected = buildCalculator('7', undefined, undefined);
       expect(given).toEqual(expected);
     });
 
-    describe('total is not zero', () => {
+    describe('total is not undefined', () => {
       // 7 ? ? 4 -> 74 ? ?
       const calculator = buildCalculator('7', undefined, undefined);
       const given = calculate(calculator, '4');
