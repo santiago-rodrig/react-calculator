@@ -29,7 +29,7 @@ function Button({
 Button.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
-  wide: PropTypes.string.isRequired,
+  wide: PropTypes.bool.isRequired,
   clickHandler: PropTypes.func.isRequired,
 };
 
