@@ -5,6 +5,18 @@ function buildCalculator(total, next = undefined, operation = undefined) {
 }
 
 describe('addition, subtraction, multiplication, or division', () => {
+  describe('division by zero', () => {
+    describe('pending operation', () => {
+      test('it undefines everything', () => {
+        // 567 ÷ 0 X -> ? ? ?
+        const calculator = buildCalculator('567', '0', '÷');
+        const given = calculate(calculator, 'X');
+        const expected = buildCalculator(undefined);
+        expect(given).toEqual(expected);
+      });
+    });
+  });
+
   describe('pending operation before continuing', () => {
     test('calculates and builds new calculator with pending operation', () => {
       const numberOne = '1';
@@ -132,6 +144,16 @@ describe('equal sign (=)', () => {
       const given = calculate(calculator, '=');
       const expected = buildCalculator('53', undefined, '=-34,+');
       expect(given).toEqual(expected);
+    });
+
+    describe('division by zero', () => {
+      test('it undefines everything', () => {
+        // 987 ÷ 0 = -> ? ? ?
+        const calculator = buildCalculator('987', '0', '÷');
+        const given = calculate(calculator, '=');
+        const expected = buildCalculator(undefined);
+        expect(given).toEqual(expected);
+      });
     });
   });
 
