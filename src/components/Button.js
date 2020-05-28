@@ -7,12 +7,19 @@ function buildStyle(color, wide) {
   return style;
 }
 
-function Button({ name, color, wide }) {
+function Button({
+  name, color, wide, clickHandler,
+}) {
+  function handleClick() {
+    clickHandler(name);
+  }
+
   return (
     <button
       className="calculator-button"
       type="button"
       style={buildStyle(color, wide)}
+      onClick={handleClick}
     >
       {name}
     </button>
@@ -23,6 +30,7 @@ Button.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
   wide: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired,
 };
 
 Button.defaultProps = {
