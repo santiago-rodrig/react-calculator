@@ -104,3 +104,44 @@ describe('equal sign (=)', () => {
     });
   });
 });
+
+describe('digits', () => {
+  describe('operation is present', () => {
+    test('it modifies next to be the sequence of digits passed', () => {
+      let calculator;
+      let given;
+      let expected;
+
+      // 0 + ? 5 -> 0 + 5
+      calculator = buildCalculator('0', undefined, '+');
+      given = calculate(calculator, '5');
+      expected = buildCalculator('0', '5', '+');
+      expect(given).toEqual(expected);
+
+      // 17 X ? 9 -> 17 X 9 8 -> 17 X 98
+      calculator = buildCalculator('17', undefined, 'X');
+      given = calculate(calculator, '9');
+      given = calculate(given, '8');
+      expected = buildCalculator('17', '98', 'X');
+      expect(given).toEqual(expected);
+    });
+  });
+
+  describe('only total is present', () => {
+    describe('total is zero', () => {
+      // 0 ? ? 7 -> 7 ? ?
+      const calculator = buildCalculator('0', undefined, undefined);
+      const given = calculate(calculator, '7');
+      const expected = buildCalculator('7', undefined, undefined);
+      expect(given).toEqual(expected);
+    });
+
+    describe('total is not zero', () => {
+      // 7 ? ? 4 -> 74 ? ?
+      const calculator = buildCalculator('7', undefined, undefined);
+      const given = calculate(calculator, '4');
+      const expected = buildCalculator('74', undefined, undefined);
+      expect(given).toEqual(expected);
+    });
+  });
+});
