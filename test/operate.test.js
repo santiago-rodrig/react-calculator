@@ -22,7 +22,7 @@ function buildExpected(numberOne, numberTwo, operation) {
       result = bigOne.div(bigTwo);
       break;
     default:
-      result = 'NaN';
+      result = 0;
       break;
   }
 
@@ -61,7 +61,7 @@ test('it divides two numbers', () => {
   expect(given).toEqual(expected);
 });
 
-test('it returns NaN on unknown operations', () => {
+test('it returns 0 on unknown operations', () => {
   const numberOne = '1946';
   const numberTwo = '9878';
   const given = operate(numberOne, numberTwo, 'whoops');
