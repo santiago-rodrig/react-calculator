@@ -85,7 +85,7 @@ describe('percents (%)', () => {
 describe('swap sign (+/-)', () => {
   describe('only total is available', () => {
     test('it swaps the sign of total', () => {
-      // 23 ? +/- -> -23 ? ?
+      // 23 ? ? +/- -> -23 ? ?
       const calculator = buildCalculator('23', undefined, undefined);
       const given = calculate(calculator, '+/-');
       const expected = buildCalculator('-23', undefined, undefined);
@@ -99,6 +99,16 @@ describe('swap sign (+/-)', () => {
       const calculator = buildCalculator('5', '99', 'X');
       const given = calculate(calculator, '+/-');
       const expected = buildCalculator('5', '-99', 'X');
+      expect(given).toEqual(expected);
+    });
+  });
+
+  describe('there is just no next number', () => {
+    test('it assignes next to total multiplied by -1', () => {
+      // 67 + ? +/- -> 67 + -67
+      const calculator = buildCalculator('67', undefined, '+');
+      const given = calculate(calculator, '+/-');
+      const expected = buildCalculator('67', '-67', '+');
       expect(given).toEqual(expected);
     });
   });
