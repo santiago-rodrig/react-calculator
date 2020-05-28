@@ -37,7 +37,7 @@ function calculate(calculatorObj, buttonName) {
       } else if (operation) {
         operation = undefined;
       } else {
-        total = '0';
+        total = undefined;
       }
 
       break;

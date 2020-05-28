@@ -216,11 +216,11 @@ describe('AC', () => {
   });
 
   describe('there is only total', () => {
-    test('it sets total to zero', () => {
-      // 76 ? ? AC -> 0 ? ?
+    test('it undefines the total', () => {
+      // 76 ? ? AC -> ? ? ?
       const calculator = buildCalculator('76');
       const given = calculate(calculator, 'AC');
-      const expected = buildCalculator('0');
+      const expected = buildCalculator(undefined);
       expect(given).toEqual(expected);
     });
   });
