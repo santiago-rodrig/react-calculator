@@ -154,11 +154,11 @@ describe('equal sign (=)', () => {
 describe('digits', () => {
   describe('operation is present', () => {
     describe('operation is a result', () => {
-      test('it replaces total with the digit', () => {
-        // 54 =9,X ? 9 -> 9 =9,X ?
+      test('it replaces next with the digit', () => {
+        // 54 =9,X ? 9 -> 54 =9,X 9
         const calculator = buildCalculator('54', undefined, '=9,X');
         const given = calculate(calculator, '9');
-        const expected = buildCalculator('9', undefined, '=9,X');
+        const expected = buildCalculator('54', '9', '=9,X');
         expect(given).toEqual(expected);
       });
     });
