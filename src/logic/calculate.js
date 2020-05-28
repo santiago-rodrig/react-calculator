@@ -104,7 +104,9 @@ function calculate(calculatorObj, buttonName) {
       break;
     default:
       if (next) {
-        if (operation[0] !== '=') {
+        if (operation[0] === '=') {
+          total = next;
+        } else {
           total = operate(total, next, operation);
         }
 
