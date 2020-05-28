@@ -38,6 +38,16 @@ describe('addition, subtraction, multiplication, or division', () => {
       expect(given).toEqual(expected);
     });
   });
+
+  describe('there is no next number', () => {
+    test('it changes the operation', () => {
+      // 90 + ? X -> 90 X ?
+      const calculator = buildCalculator('90', '+');
+      const given = calculate(calculator, 'X');
+      const expected = calculate('90', 'X');
+      expect(given).toEqual(expected);
+    });
+  });
 });
 
 describe('percents (%)', () => {

@@ -75,9 +75,15 @@ function calculate(calculatorObj, buttonName) {
 
       break;
     default:
-      total = operate(total, next, operation);
-      next = undefined;
-      operation = buttonName;
+      if (total && next) {
+        total = operate(total, next, operation);
+        next = undefined;
+        operation = buttonName;
+      } else if (total) {
+        operation = buttonName;
+      }
+      // don't do anything on the rest of the cases
+
       break;
   }
 
