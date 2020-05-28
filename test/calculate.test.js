@@ -48,6 +48,16 @@ describe('addition, subtraction, multiplication, or division', () => {
       expect(given).toEqual(expected);
     });
   });
+
+  describe('there is a previous result and a next', () => {
+    test('it uses previous result as total and waits for input', () => {
+      // 72 =9,X ? - -> 72 - ?
+      const calculator = buildCalculator('72', '5', '=9,X');
+      const given = calculate(calculator, '-');
+      const expected = buildCalculator('72', undefined, '-');
+      expect(given).toEqual(expected);
+    });
+  });
 });
 
 describe('percents (%)', () => {
