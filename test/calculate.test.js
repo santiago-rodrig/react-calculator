@@ -253,6 +253,16 @@ describe('decimal point', () => {
 });
 
 describe('AC', () => {
+  describe('the operation is a result', () => {
+    test('it undefines all', () => {
+      // 5 =9,X 4 AC -> ? ? ?
+      const calculator = buildCalculator('5', '4', '=9,X');
+      const given = calculate(calculator, 'AC');
+      const expected = buildCalculator(undefined);
+      expect(given).toEqual(expected);
+    });
+  });
+
   describe('there is a next number', () => {
     test('it undefines the next number', () => {
       // 65 + 23 AC -> 65 + 0
