@@ -19,7 +19,9 @@ function calculate(calculatorObj, buttonName) {
     case '+/-':
       if (next) {
         next = operate(next, '-1', 'X');
-      } else {
+      } else if (total && operation) {
+        next = operate(total, '-1', 'X');
+      } else if (total) {
         total = operate(total, '-1', 'X');
       }
 
