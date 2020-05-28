@@ -49,12 +49,12 @@ describe('addition, subtraction, multiplication, or division', () => {
     });
   });
 
-  describe('there is a previous result and a next', () => {
-    test('it uses previous result as total and waits for input', () => {
+  describe('there is a previous result and a next number', () => {
+    test('it uses next value as total and waits for input', () => {
       // 72 =9,X ? - -> 72 - ?
       const calculator = buildCalculator('72', '5', '=9,X');
       const given = calculate(calculator, '-');
-      const expected = buildCalculator('72', undefined, '-');
+      const expected = buildCalculator('5', undefined, '-');
       expect(given).toEqual(expected);
     });
   });
