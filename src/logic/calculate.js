@@ -34,7 +34,7 @@ function calculate(calculatorObj, buttonName) {
           const previousOperation = data[1];
           total = operate(firstOperand, next, previousOperation);
         } else {
-        total = operate(total, next, operation);
+          total = operate(total, next, operation);
           operation = `=${next},${operation}`;
         }
         next = undefined;
@@ -54,7 +54,7 @@ function calculate(calculatorObj, buttonName) {
       break;
     case 'AC':
       if (next) {
-        next = '0';
+        next = undefined;
       } else if (operation) {
         operation = undefined;
       } else {
