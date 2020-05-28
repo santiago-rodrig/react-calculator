@@ -103,8 +103,11 @@ function calculate(calculatorObj, buttonName) {
 
       break;
     default:
-      if (total && next) {
-        total = operate(total, next, operation);
+      if (next) {
+        if (operation[0] !== '=') {
+          total = operate(total, next, operation);
+        }
+
         next = undefined;
         operation = buttonName;
       } else if (total) {
