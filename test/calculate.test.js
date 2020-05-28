@@ -200,7 +200,7 @@ describe('AC', () => {
       // 65 + 23 AC -> 65 + 0
       const calculator = buildCalculator('65', '23', '+');
       const given = calculate(calculator, 'AC');
-      const expected = buildCalculator('64', '0', '+');
+      const expected = buildCalculator('65', '0', '+');
       expect(given).toEqual(expected);
     });
   });
