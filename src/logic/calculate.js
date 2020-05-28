@@ -27,7 +27,6 @@ function calculate(calculatorObj, buttonName) {
 
       break;
     case '=':
-      // don't do anything if the only value is the total
       if (next) {
         total = operate(total, next, operation);
         next = undefined;
