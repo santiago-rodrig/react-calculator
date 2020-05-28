@@ -32,7 +32,15 @@ function calculate(calculatorObj, buttonName) {
           const data = operation.slice(1).split(',');
           const firstOperand = data[0];
           const previousOperation = data[1];
-          total = operate(firstOperand, next, previousOperation);
+          if (previousOperation !== '÷' && next !== '0') {
+            total = operate(firstOperand, next, previousOperation);
+          } else {
+            total = undefined;
+            operation = undefined;
+          }
+        } else if (operation === '÷' && next === '0') {
+          total = undefined;
+          operation = undefined;
         } else {
           total = operate(total, next, operation);
           operation = `=${next},${operation}`;
@@ -106,12 +114,21 @@ function calculate(calculatorObj, buttonName) {
       if (next) {
         if (operation[0] === '=') {
           total = next;
+          operation = buttonName;
+        } else if (operation === '÷') {
+          if (next === '0') {
+            total = undefined;
+            operation = undefined;
+          } else {
+            total = operate(total, next, operation);
+            operation = buttonName;
+          }
         } else {
           total = operate(total, next, operation);
+          operation = buttonName;
         }
 
         next = undefined;
-        operation = buttonName;
       } else if (total) {
         operation = buttonName;
       }
