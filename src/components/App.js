@@ -19,8 +19,10 @@ function App() {
 
   if (next) {
     displayComponent = <Display calculation={next} />;
-  } else {
+  } else if (total) {
     displayComponent = <Display calculation={total} />;
+  } else {
+    displayComponent = <Display />;
   }
 
   return (
