@@ -254,11 +254,11 @@ describe('decimal point', () => {
 
 describe('AC', () => {
   describe('there is a next number', () => {
-    test('it sets the next number to zero', () => {
+    test('it undefines the next number', () => {
       // 65 + 23 AC -> 65 + 0
       const calculator = buildCalculator('65', '23', '+');
       const given = calculate(calculator, 'AC');
-      const expected = buildCalculator('65', '0', '+');
+      const expected = buildCalculator('65', undefined, '+');
       expect(given).toEqual(expected);
     });
   });
