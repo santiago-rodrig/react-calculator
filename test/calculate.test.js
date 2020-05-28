@@ -136,7 +136,7 @@ describe('equal sign (=)', () => {
 
   describe('there is no next number', () => {
     // 5 X ? = -> 25 ? ?
-    const calculator = buildCalculator('5', 'X');
+    const calculator = buildCalculator('5', undefined, 'X');
     const given = calculate(calculator, '=');
     const expected = buildCalculator('25');
     expect(given).toEqual(expected);
