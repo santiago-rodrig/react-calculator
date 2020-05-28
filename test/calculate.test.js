@@ -116,11 +116,11 @@ describe('swap sign (+/-)', () => {
 
 describe('equal sign (=)', () => {
   describe('there is a pending operation', () => {
-    test('it updates the total and resets the other properties', () => {
+    test('it updates the total and sets the operation to <previousNext>,<operation>', () => {
       // 87 + (-34) = -> 53 ? ?
       const calculator = buildCalculator('87', '-34', '+');
       const given = calculate(calculator, '=');
-      const expected = buildCalculator('53', undefined, undefined);
+      const expected = buildCalculator('53', undefined, '=-34,+');
       expect(given).toEqual(expected);
     });
   });
@@ -138,30 +138,50 @@ describe('equal sign (=)', () => {
     // 5 X ? = -> 25 ? ?
     const calculator = buildCalculator('5', undefined, 'X');
     const given = calculate(calculator, '=');
-    const expected = buildCalculator('25');
+    const expected = buildCalculator('25', undefined, '=5,X');
+    expect(given).toEqual(expected);
+  });
+
+  describe('there is a previous result', () => {
+    // 5 =9,X ? = -> 45 =9,X ?
+    const calculator = buildCalculator('5', undefined, '=9,X');
+    const given = calculate(calculator, '=');
+    const expected = buildCalculator('45', undefined, '=9,X');
     expect(given).toEqual(expected);
   });
 });
 
 describe('digits', () => {
   describe('operation is present', () => {
-    test('it modifies next to be the sequence of digits passed', () => {
-      let calculator;
-      let given;
-      let expected;
+    describe('operation is a result', () => {
+      test('it replaces total with the digit', () => {
+        // 54 =9,X ? 9 -> 9 =9,X ?
+        const calculator = buildCalculator('54', undefined, '=9,X');
+        const given = calculate(calculator, '9');
+        const expected = buildCalculator('9', undefined, '=9,X');
+        expect(given).toEqual(expected);
+      });
+    });
 
-      // 0 + ? 5 -> 0 + 5
-      calculator = buildCalculator('0', undefined, '+');
-      given = calculate(calculator, '5');
-      expected = buildCalculator('0', '5', '+');
-      expect(given).toEqual(expected);
+    describe('operation is not a result', () => {
+      test('it modifies next to be the sequence of digits passed', () => {
+        let calculator;
+        let given;
+        let expected;
 
-      // 17 X ? 9 -> 17 X 9 8 -> 17 X 98
-      calculator = buildCalculator('17', undefined, 'X');
-      given = calculate(calculator, '9');
-      given = calculate(given, '8');
-      expected = buildCalculator('17', '98', 'X');
-      expect(given).toEqual(expected);
+        // 0 + ? 5 -> 0 + 5
+        calculator = buildCalculator('0', undefined, '+');
+        given = calculate(calculator, '5');
+        expected = buildCalculator('0', '5', '+');
+        expect(given).toEqual(expected);
+
+        // 17 X ? 9 -> 17 X 9 8 -> 17 X 98
+        calculator = buildCalculator('17', undefined, 'X');
+        given = calculate(calculator, '9');
+        given = calculate(given, '8');
+        expected = buildCalculator('17', '98', 'X');
+        expect(given).toEqual(expected);
+      });
     });
   });
 
