@@ -16,6 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:logic": "jest test/",
+    "lint": "eslint --fix src/ test/",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
