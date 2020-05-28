@@ -54,8 +54,15 @@ function calculate(calculatorObj, buttonName) {
       break;
     case 'AC':
       if (next) {
+        if (operation[0] === '=') {
+          total = undefined;
+          operation = undefined;
+        }
         next = undefined;
       } else if (operation) {
+        if (operation[0] === '=') {
+          total = undefined;
+        }
         operation = undefined;
       } else {
         total = undefined;
