@@ -15,10 +15,18 @@ function App() {
     setOperation(newState.operation);
   }
 
+  let displayComponent;
+
+  if (next) {
+    displayComponent = <Display calculation={next} />;
+  } else {
+    displayComponent = <Display calculation={total} />;
+  }
+
   return (
     <div id="calculator">
-      <Display />
-      <ButtonPanel />
+      {displayComponent}
+      <ButtonPanel handleClick={handleClick} />
     </div>
   );
 }
