@@ -38,7 +38,7 @@ function ButtonPanel({ clickHandler }) {
 
     return (
       <Button
-        clickHandler={() => clickHandler}
+        clickHandler={clickHandler}
         key={data.key}
         name={data.name}
         wide={data.wide}
