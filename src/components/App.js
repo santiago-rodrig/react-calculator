@@ -8,6 +8,13 @@ function App() {
   const [next, setNext] = React.useState(undefined);
   const [operation, setOperation] = React.useState(undefined);
 
+  function handleClick(buttonName) {
+    const newState = calculate({ total, next, operation }, buttonName);
+    setTotal(newState.total);
+    setNext(newState.next);
+    setOperation(newState.operation);
+  }
+
   return (
     <div id="calculator">
       <Display />
