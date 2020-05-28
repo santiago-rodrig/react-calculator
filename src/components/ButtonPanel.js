@@ -28,10 +28,16 @@ function ButtonPanel({ clickHandler }) {
   const buttonsColor = '#E3E1DE';
 
   const buttonsElements = buttonsProps.map((prop, i) => {
-    const data = { ...prop, wide: false, color: buttonsColor };
+    const data = {
+      ...prop,
+      wide: false,
+      color: buttonsColor,
+      className: 'calculator-button',
+    };
 
     if ((i + 1) % 4 === 0 || prop.key === 19) {
       delete data.color;
+      data.className += '-orange';
     } else if (prop.name === '0') {
       data.wide = true;
     }
@@ -39,6 +45,7 @@ function ButtonPanel({ clickHandler }) {
     return (
       <Button
         clickHandler={clickHandler}
+        className={data.className}
         key={data.key}
         name={data.name}
         wide={data.wide}
