@@ -145,3 +145,51 @@ describe('digits', () => {
     });
   });
 });
+
+describe('decimal point', () => {
+  describe('operation is present', () => {
+    describe('there is a next number', () => {
+      test('it places a decimal point at the end of the next number', () => {
+        // 5 - 3 . -> 5 - 3.
+        const calculator = buildCalculator('5', '3', '-');
+        const given = calculate(calculator, '.');
+        const expected = buildCalculator('5', '3.', '-');
+        expect(given).toEqual(expected);
+      });
+
+      test('it does nothing if there is a decimal point already', () => {
+        // 5 - 3. . -> 5 - 3.
+        const calculator = buildCalculator('5', '3.', '-');
+        const given = calculate(calculator, '.');
+        expect(given).toEqual(calculator);
+      });
+    });
+
+    describe('there is no next number', () => {
+      test('it creates 0. as the next number', () => {
+        // 5 - ? . -> 5 - 0.
+        const calculator = buildCalculator('5', undefined, '-');
+        const given = calculate(calculator, '.');
+        const expected = buildCalculator('5', '0.', '-');
+        expect(given).toEqual(expected);
+      });
+    });
+  });
+
+  describe('only total is present', () => {
+    test('it places a decimal point at the end of the total', () => {
+      // 99 ? ? . -> 99. ? ?
+      const calculator = buildCalculator('99');
+      const given = calculate(calculator, '.');
+      const expected = buildCalculator('99.');
+      expect(given).toEqual(expected);
+    });
+
+    test('it does nothing if there is a decimal point already', () => {
+      // 99. ? ? . -> 99. ? ?
+      const calculator = buildCalculator('99.');
+      const given = calculate(calculator, '.');
+      expect(given).toEqual(calculator);
+    });
+  });
+});
