@@ -28,12 +28,27 @@ function calculate(calculatorObj, buttonName) {
       break;
     case '=':
       if (next) {
+        if (operation[0] === '=') {
+          const data = operation.slice(1).split(',');
+          const firstOperand = data[0];
+          const previousOperation = data[1];
+          total = operate(firstOperand, next, previousOperation);
+        } else {
         total = operate(total, next, operation);
+          operation = `=${next},${operation}`;
+        }
         next = undefined;
-        operation = undefined;
       } else if (total && operation) {
-        total = operate(total, total, operation);
-        operation = undefined;
+        if (operation[0] !== '=') {
+          const previousOperation = operation;
+          operation = `=${total},${operation}`;
+          total = operate(total, total, previousOperation);
+        } else {
+          const data = operation.slice(1).split(',');
+          const firstOperand = data[0];
+          const previousOperation = data[1];
+          total = operate(firstOperand, total, previousOperation);
+        }
       }
 
       break;
