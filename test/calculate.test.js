@@ -193,3 +193,35 @@ describe('decimal point', () => {
     });
   });
 });
+
+describe('AC', () => {
+  describe('there is a next number', () => {
+    test('it sets the next number to zero', () => {
+      // 65 + 23 AC -> 65 + 0
+      const calculator = buildCalculator('65', '23', '+');
+      const given = calculate(calculator, 'AC');
+      const expected = buildCalculator('64', '0', '+');
+      expect(given).toEqual(expected);
+    });
+  });
+
+  describe('there is no next number, but there is an operation', () => {
+    test('it undefines the operation', () => {
+      // 87 X ? AC -> 87 ? ?
+      const calculator = buildCalculator('87', undefined, 'X');
+      const given = calculate(calculator, 'AC');
+      const expected = buildCalculator('87', undefined, undefined);
+      expect(given).toEqual(expected);
+    });
+  });
+
+  describe('there is only total', () => {
+    test('it sets total to zero', () => {
+      // 76 ? ? AC -> 0 ? ?
+      const calculator = buildCalculator('76');
+      const given = calculate(calculator, 'AC');
+      const expected = buildCalculator('0');
+      expect(given).toEqual(expected);
+    });
+  });
+});
