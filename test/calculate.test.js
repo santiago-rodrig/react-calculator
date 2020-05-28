@@ -113,6 +113,14 @@ describe('equal sign (=)', () => {
       expect(given).toEqual(calculator);
     });
   });
+
+  describe('there is no next number', () => {
+    // 5 X ? = -> 25 ? ?
+    const calculator = buildCalculator('5', 'X');
+    const given = calculate(calculator, '=');
+    const expected = buildCalculator('25');
+    expect(given).toEqual(expected);
+  });
 });
 
 describe('digits', () => {
