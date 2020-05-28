@@ -42,9 +42,9 @@ describe('addition, subtraction, multiplication, or division', () => {
   describe('there is no next number', () => {
     test('it changes the operation', () => {
       // 90 + ? X -> 90 X ?
-      const calculator = buildCalculator('90', '+');
+      const calculator = buildCalculator('90', undefined, '+');
       const given = calculate(calculator, 'X');
-      const expected = calculate('90', 'X');
+      const expected = buildCalculator('90', undefined, 'X');
       expect(given).toEqual(expected);
     });
   });

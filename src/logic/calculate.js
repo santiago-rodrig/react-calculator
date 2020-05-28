@@ -88,7 +88,6 @@ function calculate(calculatorObj, buttonName) {
       } else if (total) {
         operation = buttonName;
       }
-      // don't do anything on the rest of the cases
 
       break;
   }
