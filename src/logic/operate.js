@@ -20,7 +20,7 @@ function operate(numberOne, numberTwo, operation) {
       result = bigOne.div(bigTwo);
       break;
     default:
-      result = 'NaN';
+      result = 0;
       break;
   }
 
