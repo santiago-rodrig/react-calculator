@@ -67,7 +67,7 @@ function calculate(calculatorObj, buttonName) {
         next += buttonName;
       } else if (operation) {
         next = buttonName;
-      } else if (total === '0') {
+      } else if (!total) {
         total = buttonName;
       } else {
         total += buttonName;
