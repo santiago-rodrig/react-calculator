@@ -7,12 +7,22 @@ function buildStyle(color, wide) {
   return style;
 }
 
-function Button({ name, color, wide }) {
+function Button({
+  name, color, wide, clickHandler, className,
+}) {
+  const btnRef = React.useRef();
+
+  function handleClick() {
+    clickHandler(name, btnRef);
+  }
+
   return (
     <button
-      className="calculator-button"
+      ref={btnRef}
+      className={className}
       type="button"
       style={buildStyle(color, wide)}
+      onClick={handleClick}
     >
       {name}
     </button>
@@ -22,7 +32,9 @@ function Button({ name, color, wide }) {
 Button.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
-  wide: PropTypes.string.isRequired,
+  wide: PropTypes.bool.isRequired,
+  clickHandler: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 Button.defaultProps = {

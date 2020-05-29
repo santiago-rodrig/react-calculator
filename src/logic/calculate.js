@@ -6,38 +6,74 @@ function calculate(calculatorObj, buttonName) {
   switch (buttonName) {
     case '%':
       if (next) {
-        total = operate(total, next, operation);
-        total = operate(total, '100', '÷');
-        next = undefined;
-        operation = undefined;
-      } else {
+        next = operate(total, next, 'X');
+        next = operate(next, '100', '÷');
+      } else if (total && operation) {
+        next = operate(total, total, 'X');
+        next = operate(next, '100', '÷');
+      } else if (total) {
         total = operate(total, '100', '÷');
       }
+
       break;
     case '+/-':
       if (next) {
         next = operate(next, '-1', 'X');
-      } else {
+      } else if (total && operation) {
+        next = operate(total, '-1', 'X');
+      } else if (total) {
         total = operate(total, '-1', 'X');
       }
 
       break;
     case '=':
-      // don't do anything if the only value is the total
       if (next) {
-        total = operate(total, next, operation);
+        if (operation[0] === '=') {
+          const data = operation.slice(1).split(',');
+          const firstOperand = data[0];
+          const previousOperation = data[1];
+          if (previousOperation !== '÷' && next !== '0') {
+            total = operate(firstOperand, next, previousOperation);
+          } else {
+            total = undefined;
+            operation = undefined;
+          }
+        } else if (operation === '÷' && next === '0') {
+          total = undefined;
+          operation = undefined;
+        } else {
+          total = operate(total, next, operation);
+          operation = `=${next},${operation}`;
+        }
         next = undefined;
-        operation = undefined;
+      } else if (total && operation) {
+        if (operation[0] !== '=') {
+          const previousOperation = operation;
+          operation = `=${total},${operation}`;
+          total = operate(total, total, previousOperation);
+        } else {
+          const data = operation.slice(1).split(',');
+          const firstOperand = data[0];
+          const previousOperation = data[1];
+          total = operate(firstOperand, total, previousOperation);
+        }
       }
 
       break;
     case 'AC':
       if (next) {
-        next = '0';
+        if (operation[0] === '=') {
+          total = undefined;
+          operation = undefined;
+        }
+        next = undefined;
       } else if (operation) {
+        if (operation[0] === '=') {
+          total = undefined;
+        }
         operation = undefined;
       } else {
-        total = '0';
+        total = undefined;
       }
 
       break;
@@ -67,7 +103,7 @@ function calculate(calculatorObj, buttonName) {
         next += buttonName;
       } else if (operation) {
         next = buttonName;
-      } else if (total === '0') {
+      } else if (!total) {
         total = buttonName;
       } else {
         total += buttonName;
@@ -75,9 +111,28 @@ function calculate(calculatorObj, buttonName) {
 
       break;
     default:
-      total = operate(total, next, operation);
-      next = undefined;
-      operation = buttonName;
+      if (next) {
+        if (operation[0] === '=') {
+          total = next;
+          operation = buttonName;
+        } else if (operation === '÷') {
+          if (next === '0') {
+            total = undefined;
+            operation = undefined;
+          } else {
+            total = operate(total, next, operation);
+            operation = buttonName;
+          }
+        } else {
+          total = operate(total, next, operation);
+          operation = buttonName;
+        }
+
+        next = undefined;
+      } else if (total) {
+        operation = buttonName;
+      }
+
       break;
   }
 

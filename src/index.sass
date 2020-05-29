@@ -1,6 +1,9 @@
 $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
 $display-bg: #807F7D
 $button-border: 1px solid #B8B6B4
+$button-bg: #e8e8e8
+$button-hover-bg: #c9c9c7
+$button-orange-hover-bg: #cf8f19
 
 html
   box-sizing: border-box
@@ -13,8 +16,8 @@ body
   font-family: $font-stack
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  padding-top: 80px
-  padding-bottom: 80px
+  padding-top: 2rem
+  padding-bottom: 2rem
 
 #calculator
   display: flex
@@ -38,12 +41,27 @@ body
   display: flex
   flex-basis: 100px
 
-.calculator-button
+%btn
   padding: 20px
   font-size: 18px
   border-radius: 0
   border: none
   border-right: $button-border
   border-bottom: $button-border
+  &:focus
+    outline: none
+
+.calculator-button
+  @extend %btn
   &:first-child
     border-left: $button-border
+  &:hover
+    background-color: $button-hover-bg !important
+
+.calculator-button-orange
+  @extend %btn
+  &:hover
+    background-color: $button-orange-hover-bg !important
+
+.listener-operation
+  background-color: $button-orange-hover-bg !important

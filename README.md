@@ -2,6 +2,8 @@
 
 [live demo](https://srodrig-react-calculator.herokuapp.com)
 
+![app demo gif](./doc/demo.gif)
+
 This is a calculator app built with [React](https://en.reactjs.org/), its goal is to emulate the behavior
 of a conventional calculator, but in the browser.
 
@@ -12,7 +14,7 @@ of a conventional calculator, but in the browser.
 
 ## Setup
 
-```
+```bash
 git clone https://github.com/santiago-rodrig/react-calculator &&
 cd react-calculator &&
 yarn install
@@ -26,7 +28,7 @@ This is a MIT licensed project, you can read it [here](./LICENSE).
 
 ## Authors
 
-This project is authored by [santiago-rodrig]()
+This project is authored by [santiago-rodrig](https://github.com/santiago-rodrig)
 
 ## Contact
 
