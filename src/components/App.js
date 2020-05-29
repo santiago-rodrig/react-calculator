@@ -37,19 +37,9 @@ function App() {
     }
   });
 
-  let displayComponent;
-
-  if (next) {
-    displayComponent = <Display calculation={next} />;
-  } else if (total) {
-    displayComponent = <Display calculation={total} />;
-  } else {
-    displayComponent = <Display />;
-  }
-
   return (
     <div id="calculator">
-      {displayComponent}
+      <Display calculation={next || total} />
       <ButtonPanel clickHandler={handleClick} />
     </div>
   );
